@@ -1,5 +1,6 @@
 {
   "model":  "gpt-3.5-turbo",
   "apikey": "",
+  "endpoint": "https://ai-proxy.lab.epam.com",
   "org":    ""
 }

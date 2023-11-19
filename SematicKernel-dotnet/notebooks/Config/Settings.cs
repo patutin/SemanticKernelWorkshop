@@ -12,8 +12,9 @@ public static class Settings
     private const string ModelKey = "model";
     private const string SecretKey = "apikey";
     private const string OrgKey = "org";
+    private const string EndpointKey = "endpoint";
 
-    public static (string model, string apiKey, string orgId) LoadFromFile(string configFile = DefaultConfigFile)
+    public static (string model, string azureEndpoint, string apiKey, string orgId) LoadFromFile(string configFile = DefaultConfigFile)
     {
         if (!File.Exists(configFile))
         {
@@ -25,6 +26,7 @@ public static class Settings
         {
             var config = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(configFile));
             string model = config[ModelKey];
+            string azureEndpoint = config[EndpointKey];
             string apiKey = config[SecretKey];
             string orgId = config[OrgKey];
 
@@ -33,12 +35,12 @@ public static class Settings
                 orgId = "";
             }
 
-            return (model, apiKey, orgId);
+            return (model, azureEndpoint, apiKey, orgId);
         }
         catch (Exception e)
         {
             Console.WriteLine("Something went wrong: " + e.Message);
-            return ("", "", "");
+            return ("", "", "", "");
         }
     }
 }
