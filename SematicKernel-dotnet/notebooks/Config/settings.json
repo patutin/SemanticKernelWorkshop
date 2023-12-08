@@ -1,6 +1,14 @@
-{
-  "model":  "gpt-3.5-turbo",
-  "apikey": "",
-  "endpoint": "https://ai-proxy.lab.epam.com",
-  "org":    ""
-}
+[
+  {
+    "model": "gpt-35-turbo",
+    "apikey": "",
+    "endpoint": "",
+    "org": "AzureGtp35Turbo"
+  },
+  {
+    "model": "gpt-4-32k",
+    "apikey": "",
+    "endpoint": "",
+    "org": "AzureGtp4Turbo"
+  }
+]
