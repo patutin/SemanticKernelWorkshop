@@ -3,12 +3,18 @@
     "model": "gpt-35-turbo",
     "apikey": "",
     "endpoint": "",
-    "org": "AzureGtp35Turbo"
+    "serviceid": "AzureGtp35TurboService"
   },
   {
     "model": "gpt-4-32k",
     "apikey": "",
     "endpoint": "",
-    "org": "AzureGtp4Turbo"
+    "serviceid": "AzureGtp4TurboService"
+  },
+  {
+    "model": "text-embedding-ada-002",
+    "apikey": "",
+    "endpoint": "",
+    "serviceid": "HuggingFaceService"
   }
 ]
