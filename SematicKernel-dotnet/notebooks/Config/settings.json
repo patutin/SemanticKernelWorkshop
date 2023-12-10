@@ -12,7 +12,7 @@
     "serviceid": "AzureGtp4TurboService"
   },
   {
-    "model": "text-embedding-ada-002",
+    "model": "google/flan-t5-xxl",
     "apikey": "",
     "endpoint": "none",
     "serviceid": "HuggingFaceService"
