@@ -2,19 +2,19 @@
   {
     "model": "gpt-35-turbo",
     "apikey": "",
-    "endpoint": "",
+    "endpoint": "https://ai-proxy.lab.epam.com",
     "serviceid": "AzureGtp35TurboService"
   },
   {
     "model": "gpt-4-32k",
     "apikey": "",
-    "endpoint": "",
+    "endpoint": "https://ai-proxy.lab.epam.com",
     "serviceid": "AzureGtp4TurboService"
   },
   {
     "model": "text-embedding-ada-002",
     "apikey": "",
-    "endpoint": "",
+    "endpoint": "none",
     "serviceid": "HuggingFaceService"
   }
 ]
