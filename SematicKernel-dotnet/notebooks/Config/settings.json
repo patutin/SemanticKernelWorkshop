@@ -1,19 +1,19 @@
 [
   {
     "model": "gpt-35-turbo",
-    "apikey": "",
-    "endpoint": "",
+    "apikey": "604b2e7c019b42bcbe1eae9472f71783",
+    "endpoint": "https://ai-proxy.lab.epam.com",
     "serviceid": "AzureGtp35TurboService"
   },
   {
     "model": "gpt-4-32k",
-    "apikey": "",
-    "endpoint": "",
+    "apikey": "604b2e7c019b42bcbe1eae9472f71783",
+    "endpoint": "https://ai-proxy.lab.epam.com",
     "serviceid": "AzureGtp4TurboService"
   },
   {
     "model": "text-embedding-ada-002",
-    "apikey": "",
+    "apikey": "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",
     "endpoint": "",
     "serviceid": "HuggingFaceService"
   }
