@@ -1,4 +1,4 @@
-Given the following text, provide a concise summary in 1-2 sentences:
+Given the following text, provide a concise summary in 1-2 sentences on {{$lang}}:
 
 Text:
 {{$Input}}
