@@ -1,63 +1,107 @@
 # Session 1: Introduction to SemanticKernel
 
-## Prerequisite
-Before starting this session, ensure you have received the Azure OpenAI API keys via email.
+## Prerequisites
+- Ensure you have received the Azure OpenAI API keys via email.
+- Install [.NET SDK](https://dotnet.microsoft.com/download) version 7.0 or later on your machine.
 
-## Task Steps
+## Step 1. Warm Up: Install and Configure
 
+1. **Clone the Repository:**
 
-TODO: Ruslan please fix next step
-### Step 1: Project Setup
-- **1.1 Create a new project directory**:
-  - Use the command line or terminal to create a new folder.
-- **1.2 Initialize a Node.js project**:
-  - Run `npm init` to create a `package.json` file.
+    ```bash
+    git clone https://github.com/patutin/SemanticKernelWorkshop.git
+    cd SemanticKernelWorkshop
+    ```
 
+2. **Check Installed .NET Versions:**
 
-TODO: Ruslan please fix next step
-### Step 2: Install NPM Packages
-- **2.1 Install LangChain and other dependencies**:
-  - Run `npm install langchain axios dotenv`.
+    ```bash
+    dotnet --list-sdks
+    ```
 
+    Ensure that .NET version 7.0 is installed.
 
-TODO: Может добавим файл для конфигурирования и примеры конфигов?
-### Step 3: Azure OpenAI API Integration
-- **3.1 Configure settings.json file**:
-  - Create a `.env` file in your project root.
-  - Add your Azure OpenAI API keys and endpoint to the `.env` file for secure access.
-- **3.2 Create your first call to Azure OpenAI LLM model**:
-  -  Develop JavaScript code to make the initial request to the Azure OpenAI LLM model using SemanticKernel.
-  -  Replace LLM Model With Chat Model, and check that it works as expected.
-  -  With the same PromptTemplate, change the Temperature to see how the output changes.
+3. **Run the PowerShell Script:**
 
+    Run the provided PowerShell script to set up the project, creating a new solution, console project, and adding necessary configurations.
 
-### Step 4: Register on HuggingFace and Get an API Key
+    [install.ps1](https://github.com/patutin/SemanticKernelWorkshop/blob/main/Tasks/scripts/install.ps1)
 
-- **4.1 Register or Login:**
-  - Visit the Hugging Face website: [https://huggingface.co/](https://huggingface.co/)
+4. **Run the Shell Script:**
 
-- **4.2 Generate an API Token:**
-  - Log in to Hugging Face.
-  - Click on your username and select "Settings".
-  - In the "Access Tokens" tab, click the "New Token" button.
-  - Enter a descriptive name for your token.
-  - Select the appropriate permissions for your token.
-  - Click the "Generate token" button.
-  - Copy the generated API token and save it securely.
+    Run the provided shell script to set up the project. Similar to the PowerShell script, it automates the creation of the solution, console project, and necessary configurations.
 
-### Step 5: HuggingFace Model Call
-- **5.1 Integrate HuggingFace model**:
-  - Replace the Azure OpenAI model with a HuggingFace model.
-  - Check that code with new model works as expected.
+    [install.sh](https://github.com/patutin/SemanticKernelWorkshop/blob/main/Tasks/scripts/install.sh)
 
-<details>
-  <summary>Hint</summary>
+5. **Set API Keys:**
 
-You need replace AddAzureOpenAIChatCompletion with AddHuggingFaceChatCompletion
-Depending on the nuget package version, you may need to stop worrning with pragma: #pragma warning disable SKEXP0020
+    - Review the created files in the project directory.
+    - Add your API keys or make any necessary adjustments in the `settings.json` file.
 
-</details>
+    Example of adding API keys to `Config/settings.json`:
 
+    ```json
+    [
+      {
+        "model": "gpt-35-turbo",
+        "apikey": "your-api-key-1",
+        "endpoint": "https://ai-proxy.lab.epam.com",
+        "serviceid": "AzureGpt35TurboService"
+      },
+      {
+        "model": "gpt-4-32k",
+        "apikey": "your-api-key-2",
+        "endpoint": "https://ai-proxy.lab.epam.com",
+        "serviceid": "AzureGpt4TurboService"
+      },
+      {
+        "model": "google/flan-t5-xxl",
+        "apikey": "your-api-key-3",
+        "endpoint": "none",
+        "serviceid": "HuggingFaceService"
+      }
+    ]
+    ```
 
-### Final Steps
-- **Lets Play with different models**: [https://huggingface.co/models](https://huggingface.co/models) 
+6. **Run the Application:**
+
+    ```bash
+    cd SemanticKernelWorkshop
+    dotnet run --project SemanticKernel.WorkshopTasks
+    ```
+
+    This will execute your application and display the initial program output.
+
+Now you have successfully set up the SemanticKernelWorkshop project. Feel free to explore, modify, and build upon it for your Semantic Kernel workshop.
+
+## Step 2. HuggingFace: Register and Get an API Key
+
+1. **Register or Login:**
+   - Visit the Hugging Face website: [https://huggingface.co/](https://huggingface.co/)
+
+2. **Generate an API Token:**
+   - Log in to Hugging Face.
+   - Click on your username and select "Settings".
+   - In the "Access Tokens" tab, click the "New Token" button.
+   - Enter a descriptive name for your token.
+   - Select the appropriate permissions for your token.
+   - Click the "Generate token" button.
+   - Copy the generated API token and save it securely.
+
+## Step 3: HuggingFace Model Call
+
+1. **Integrate HuggingFace Model**:
+
+   - Replace the Azure OpenAI model with a HuggingFace model.
+   - Check that the code with the new model works as expected.
+
+   <details>
+     <summary>Hint</summary>
+
+     You need to replace `AddAzureOpenAIChatCompletion` with `AddHuggingFaceChatCompletion`.
+     Depending on the NuGet package version, you may need to suppress warnings with pragma: `#pragma warning disable SKEXP0020`.
+
+   </details>
+
+## Final Steps
+- **Explore Different Models**: [https://huggingface.co/models](https://huggingface.co/models)
