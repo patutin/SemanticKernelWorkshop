@@ -2,8 +2,8 @@
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 # Configurable variables
-$solutionDirectory = "C:\src\EpamSemanticKernelWorkshop\"
 $solutionName = "EpamSemanticKernelWorkshop"
+$solutionDirectory = Join-Path $PSScriptRoot $solutionName
 $projectName = "EpamSemanticKernel.WorkshopTasks"
 $dotnetVersion = "7.0"
 $packageName = "Microsoft.SemanticKernel"
