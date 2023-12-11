@@ -1,10 +1,10 @@
-# Session 1: Introduction to SemanticKernel
+## Session 1: Introduction to SemanticKernel
 
-## Prerequisites
+### Prerequisites
 - Ensure you have received the Azure OpenAI API keys via email.
 - Install [.NET SDK](https://dotnet.microsoft.com/download) version 7.0 or later on your machine.
 
-## Step 1. Warm Up: Install and Configure
+### Step 1. Warm Up: Install and Configure
 
 1. **Clone the Repository:**
 
@@ -25,13 +25,13 @@
 
     Run the provided PowerShell script to set up the project, creating a new solution, console project, and adding necessary configurations.
 
-    [install.ps1](https://github.com/patutin/SemanticKernelWorkshop/blob/main/Tasks/scripts/install.ps1)
+    [install.ps1](https://github.com/patutin/SemanticKernelWorkshop/blob/main/Tasks/scripts/setupproject.ps1)
 
 4. **Run the Shell Script:**
 
     Run the provided shell script to set up the project. Similar to the PowerShell script, it automates the creation of the solution, console project, and necessary configurations.
 
-    [install.sh](https://github.com/patutin/SemanticKernelWorkshop/blob/main/Tasks/scripts/install.sh)
+    [install.sh](https://github.com/patutin/SemanticKernelWorkshop/blob/main/Tasks/scripts/setupproject.sh)
 
 5. **Set API Keys:**
 
@@ -74,7 +74,14 @@
 
 Now you have successfully set up the SemanticKernelWorkshop project. Feel free to explore, modify, and build upon it for your Semantic Kernel workshop.
 
-## Step 2. HuggingFace: Register and Get an API Key
+### Step 2. Calling Azure OpenAI API 
+- **2.1 Create your first call to Azure OpenAI LLM model**:
+  -  Develop code to make the initial request to the Azure OpenAI LLM model using SemanticKernel. Ask the Azure OpenAI to provide the top 10 best dishes in the world.
+  -  Add a parameter to your prompt and ask the top 10 dishes in the county you pass as a parameter.
+  -  Replace the gpt35-turbo model with gpt4-32k model, call the same prompt, and check the results.
+  -  Add ChatHistory to your conversation with LLM.
+
+### Step 3. HuggingFace: Register and Get an API Key
 
 1. **Register or Login:**
    - Visit the Hugging Face website: [https://huggingface.co/](https://huggingface.co/)
@@ -88,7 +95,7 @@ Now you have successfully set up the SemanticKernelWorkshop project. Feel free t
    - Click the "Generate token" button.
    - Copy the generated API token and save it securely.
 
-## Step 3: HuggingFace Model Call
+### Step 4: HuggingFace Model Call
 
 1. **Integrate HuggingFace Model**:
 
@@ -103,5 +110,5 @@ Now you have successfully set up the SemanticKernelWorkshop project. Feel free t
 
    </details>
 
-## Final Steps
+### Final Steps
 - **Explore Different Models**: [https://huggingface.co/models](https://huggingface.co/models)
