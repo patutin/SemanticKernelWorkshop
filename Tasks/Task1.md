@@ -22,7 +22,7 @@ TODO: Ruslan please fix next step
 
 TODO: Может добавим файл для конфигурирования и примеры конфигов?
 ### Step 3: Azure OpenAI API Integration
-- **3.1 Configure .env file**:
+- **3.1 Configure settings.json file**:
   - Create a `.env` file in your project root.
   - Add your Azure OpenAI API keys and endpoint to the `.env` file for secure access.
 - **3.2 Create your first call to Azure OpenAI LLM model**:
@@ -30,12 +30,6 @@ TODO: Может добавим файл для конфигурирования
   -  Replace LLM Model With Chat Model, and check that it works as expected.
   -  With the same PromptTemplate, change the Temperature to see how the output changes.
 
-<details>
-  <summary>Hint</summary>
-
-Provide all four parameters for Azure: API_KEY, API_VERSION, BASE_PATH, and DEPLOYMENT_NAME
-
-</details>
 
 ### Step 4: Register on HuggingFace and Get an API Key
 
