@@ -25,13 +25,13 @@
 
     Run the provided PowerShell script to set up the project, creating a new solution, console project, and adding necessary configurations.
 
-    [install.ps1](https://github.com/patutin/SemanticKernelWorkshop/blob/main/Tasks/scripts/setupproject.ps1)
+    [setupproject.ps1](https://github.com/patutin/SematicKernelWorkshop/blob/main/Tasks/scripts/setupproject.ps1)
 
 4. **Run the Shell Script:**
 
     Run the provided shell script to set up the project. Similar to the PowerShell script, it automates the creation of the solution, console project, and necessary configurations.
 
-    [install.sh](https://github.com/patutin/SemanticKernelWorkshop/blob/main/Tasks/scripts/setupproject.sh)
+    [setupproject.sh](https://github.com/patutin/SematicKernelWorkshop/blob/main/Tasks/scripts/setupproject.sh)
 
 5. **Set API Keys:**
 
