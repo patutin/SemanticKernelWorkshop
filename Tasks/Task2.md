@@ -1,42 +1,62 @@
-# Workshop 2: Work with Chains in LangChainJS
+# Workshop 2: Chaining Function in SemanticKernel
 
 ## Overview
-This workshop offers hands-on experience in creating and manipulating chains using LangChainJS, covering various components and integrating different models for real-world applications.
+This workshop offers hands-on experience in creating and manipulating chains of function using SemanticKernel, covering various components and integrating different models for real-world applications.
 
 ## Practical Tasks
 
-### Task 1: Basic Chain Creation
-- Initialize a basic LangChain project.
-- Create a `PromptTemplate` for a simple query.
-- Pipe the template to a `ChatOpenAI` model.
-- Test the chain with a predefined input calling invoke.
+### Task 1: Recall first part
+- Open project created on previous session.
+- Create a prompt that takes one parameter (a country). The prompt asks for the most popular drinks in the country you pass.
+- Define a function that uses prompt as a paramter and call it using InvokeAsync.
+- Check that LLM model returns the correct results.
 
-### Task 2: Chain Streaming and Batch Processing
-- Modify the existing chain to use a streaming function.
-- Call and check the results of the streaming function.
-- Modify the chain to use with a batch of inputs.
-- Check the results of the batch function.
+   <details>
+     <summary>Hint</summary>
+        var result = await kernel.InvokeAsync(functionName, new KernelArguments(contry));
+   </details>
+
+
+### Task 2: Define the chains
+- Add one prompt that takes the same parameter and returns most popular dish in a country.
+- Define a function and check the results of the function calling.
+- Combine both funcions into array.
+- Define a KernelParamter that contain country name.
+- Define a batch function that takes an array of functions and runs them sequentially.
+- Check the results of the function execution.
 - 
-### Task 3: Chaining Multiple OpenAI Calls
-- Create prompt for describing a dish in a restaurant.
-- Create a prompt that accepts that description and reacts somehow to it.
-- Create a chain that used first prompt to generate a description and formant resonse from model as string.
-- Create runnable object that use response from first chain as input for second chain.
+### Task 3: Injecting into chains
+- Define the event handlers for lifecycle events.
+- Call the array of functions from the previous task using InvokeAsync.
+  - List of the events:
+    - FunctionInvoking.
+    - FunctionInvoked.
+    - PromptRendering.
+    - PromptRendered.
+- Review the results of the function execution.
+   
+   <details>
+     <summary>Hint</summary>
+        kernel.FunctionInvoking += Kernel_FunctionInvoking;  
 
-### Task 4: Chaining Multiple Models Calls
-- Use the same prompt as in previous task.
-- Replace the second prompt with text for generation image based on description.
-- Create a chain that used first prompt to generate a description and formant resonse from model as string.
-- Create runnable object that use response from first chain as input for second chain.
-- Save generate image into file. 
+        void Kernel_FunctionInvoking(object? sender, FunctionInvokingEventArgs e)
+        {
+            Console.WriteLine($"[FunctionInvoking]: \n\t // {e.Function.Description} \n\t {e.Function.Name} ({string.Join(":", e.Arguments)})");
+        }
+   </details>
+
+### Task 4: Changing parameters inside chains
+- Using event handler check the calling the second function.
+- Replace the parameter value.
+- Check the execution results.
 
 <details>
   <summary>Hint</summary>
   
- You can use ''stabilityai/stable-diffusion-2'' model for image generation.
+- You can use funtion name to check the calling the second function.
 
 </details>
 
-### Task 5: Get Fun
-- Create different chains with different models.
-- Try to generate voice from text.
+### Task 5: Optional
+- Review [StepwisePlanner](https://github.com/microsoft/semantic-kernel/blob/dotnet-1.0.0-rc3/dotnet/samples/KernelSyntaxExamples/Example66_FunctionCallingStepwisePlanner.cs) example.
+- Try to creat previous task using StepwisePlanner.
