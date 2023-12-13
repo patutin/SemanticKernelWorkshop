@@ -26,8 +26,7 @@ namespace EpamSemanticKernel.WorkshopTasks
 				ExecutionSettings = new OpenAIPromptExecutionSettings
 				{
 					ServiceId = gpt35TurboServiceId,
-					Temperature = 2,
-					TopP = 1
+					Temperature = 0
 				}
 			};
 

@@ -55,8 +55,8 @@ It would be especially helpful if you could suggest books from the period {{$Yea
 
 			// Set specific arguments for the findBooks function
 			arguments.Add("BooksNumber", "3");
-			arguments.Add("YearFrom", "2020");
-			arguments.Add("YearTo", "2023");
+			arguments.Add("YearFrom", "1950");
+			arguments.Add("YearTo", "1960");
 
 			// Set specific aguments for the translate function
 			arguments.Add("Lang", "Italian");
