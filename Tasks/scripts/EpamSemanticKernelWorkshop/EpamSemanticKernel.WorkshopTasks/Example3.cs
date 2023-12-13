@@ -7,7 +7,6 @@ namespace EpamSemanticKernel.WorkshopTasks
 #pragma warning disable SKEXP0050
 	internal class Example3
 	{
-
 		public static async Task RunAsync()
 		{
 			var builder = new KernelBuilder();
