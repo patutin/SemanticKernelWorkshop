@@ -11,6 +11,7 @@ namespace EpamSemanticKernel.WorkshopTasks
 	{
 		public static async Task RunAsync()
 		{
+			Console.WriteLine("");
 			// Create a kernel builder to build the chatbot kernel
 			var builder = new KernelBuilder();
 
