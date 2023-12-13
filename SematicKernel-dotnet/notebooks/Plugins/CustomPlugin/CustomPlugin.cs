@@ -1,89 +1,71 @@
-using System.Threading.Tasks;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.AI.OpenAI;
-using Microsoft.SemanticKernel.Orchestration;
-using Microsoft.SemanticKernel.TemplateEngine;
-using Microsoft.SemanticKernel.TemplateEngine.Basic;
-using Microsoft.DotNet.Interactive;
-using InteractiveKernel = Microsoft.DotNet.Interactive.Kernel;
+using Kernel = Microsoft.SemanticKernel.Kernel;
 using System.ComponentModel;
 
 public class CustomPlugin
 {
-    private readonly IKernel _kernel;
+    private readonly Kernel _kernel;
     private readonly IPromptTemplateFactory _promptTemplateFactory;
     private readonly string _serviceId;
 
-    public CustomPlugin(IKernel kernel, IPromptTemplateFactory promptTemplateFactory = null, string serviceId = "gpt35TurboServiceId")
+    public CustomPlugin(Kernel kernel, IPromptTemplateFactory promptTemplateFactory = null, string serviceId = "gpt35TurboServiceId")
     {
         _kernel = kernel;
-        _promptTemplateFactory = promptTemplateFactory ?? new BasicPromptTemplateFactory();
+        _promptTemplateFactory = promptTemplateFactory ?? new KernelPromptTemplateFactory();
         _serviceId = serviceId;
     }
 
-    [SKFunction, Description("Initiates a chat with the Bot.")]
-    public async Task<string> ChatAsync(SKContext context)
+    [KernelFunction("Chat"), Description("Initiates a chat with the ChatBot.")]
+    public async Task<string> ChatAsync(KernelArguments arguments)
     {
         var prompt = @"
         Today is: {{time.Date}}
         Current time is: {{time.Time}}
 
-        Bot can have a conversation with you about any topic.
-        It can give detailed answer or say 'I don't know' if it does not have an answer.
+        ChatBot can have a conversation with you about any topic.
+            It can give detailed answer or say 'I don't know' if it does not have an answer.
 
-        {{$history}}
+            {{$history}}
+            User: {{$message}}
+            ChatBot:";
 
-        User: {{$message}}
-        Bot:";
+        var renderedPrompt = await _promptTemplateFactory.Create(new PromptTemplateConfig(prompt)).RenderAsync(_kernel, arguments);
 
-        var renderedPrompt = await _promptTemplateFactory.Create(prompt, new PromptTemplateConfig()).RenderAsync(context);
-
-        Console.WriteLine($"[Prompt]: {renderedPrompt}");
-
-        var skFunction = _kernel.CreateSemanticFunction(
+        var skFunction = _kernel.CreateFunctionFromPrompt(
             promptTemplate: renderedPrompt,
             functionName: nameof(ChatAsync),
-            pluginName: nameof(CustomPlugin),
             description: "Complete the prompt.");
 
-        var requestSettings = new OpenAIRequestSettings
+        var resultAsString = string.Empty;
+        try
         {
-            Temperature = 0.7,
-            ServiceId = _serviceId
-        };
-
-        var result = await skFunction.InvokeAsync(context: context, requestSettings: requestSettings);
-        var resultAsString = result.GetValue<string>();
+            var result = await skFunction.InvokeAsync(_kernel, arguments);
+            resultAsString = result.GetValue<string>();
+        }
+        catch(Exception exception)
+        {
+            Console.WriteLine(exception);
+        }
 
         // Append the new interaction to the chat history
-        string history = context.Variables["history"];
-        history += $"\nUser: {context.Variables["message"]}\nSuggestions: {resultAsString}\n";
-        context.Variables["history"] = history;
-
-        return resultAsString;
+        string history = $"{arguments["history"]}";
+        history += $"\nUser: {arguments["message"]}\nSuggestions: {resultAsString}\n";
+        return history;
     }
 
-    [SKFunction, Description("Initiates a translation task with the ChatBot by requesting the translation of a given text to a specified language.")]
-    public async Task<string> TranslateAsync(SKContext context)
+    [KernelFunction("Translate"), Description("Initiates a translation task with the ChatBot by requesting the translation of a given text to a specified language.")]
+    public async Task<string> TranslateAsync(KernelArguments arguments)
     {
-        var prompt = @"You are the best linguist. Please translate the given TEXT to {{$lang}}. 
-        TEXT: {{$Input}}";
+        var prompt = @"You are the best linguist. Please translate the given TEXT to {{$lang}}. TEXT: {{$Input}}";
 
-        var renderedPrompt = await _promptTemplateFactory.Create(prompt, new PromptTemplateConfig()).RenderAsync(context);
+        var renderedPrompt = await _promptTemplateFactory.Create(new PromptTemplateConfig(prompt)).RenderAsync(_kernel, arguments);
 
-        var skFunction = _kernel.CreateSemanticFunction(
+        var skFunction = _kernel.CreateFunctionFromPrompt(
             promptTemplate: renderedPrompt,
             functionName: nameof(TranslateAsync),
-            pluginName: nameof(CustomPlugin),
             description: "Complete the prompt.");
 
-        var requestSettings = new OpenAIRequestSettings
-        {
-            Temperature = 0.1,
-            ServiceId = _serviceId
-        };
-
-        var result = await skFunction.InvokeAsync(context: context, requestSettings: requestSettings);
-        return result.GetValue<string>();
+        var result = await skFunction.InvokeAsync(_kernel, arguments);
+        return result?.GetValue<string>() ?? string.Empty;
     }
 }
