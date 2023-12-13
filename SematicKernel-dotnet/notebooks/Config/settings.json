@@ -16,5 +16,11 @@
     "apikey": "",
     "endpoint": "none",
     "serviceid": "HuggingFaceService"
+  },
+  {
+    "model": "google-connector",
+    "apikey": "",
+    "endpoint": "",
+    "serviceid": "GoogleSearch"
   }
 ]
